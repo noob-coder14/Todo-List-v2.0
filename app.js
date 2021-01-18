@@ -83,7 +83,20 @@ app.post("/", function(req, res){
   item.save();
   res.redirect("/");
 
- 
+});
+
+app.post("/delete", (req,res)=>{
+  const clickedItemID = req.body.clicked;
+
+  Item.findByIdAndRemove(clickedItemID, function(err){
+    if(!err){
+      console.log("Done!!");
+      res.redirect("/");
+    }
+    else{
+      console.log("Problem Bro!!");
+    }
+  })
 });
 
 app.get("/work", function(req,res){
